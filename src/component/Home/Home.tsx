@@ -26,7 +26,7 @@ export const Home = () => {
 
   async function TwoPhaseLocking() {
     const URL = "https://api-concurrency-control.vercel.app"
-    // const URL = "http://127.0.0.1:5000/"
+    // const URL = "http://127.0.0.1:5000/" 
     const response = await axios.post(
       URL + "/2pl",
       {
