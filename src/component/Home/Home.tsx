@@ -125,9 +125,17 @@ export const Home = () => {
                         {row.operation}({row.table})
                       </div>
                     ) : row.status === 'Abort' ? (
-                      <div style={{ color: 'red' }}>{row.operation}</div>
+                      <div style={{ color: 'red', fontWeight: 'bold' }}>
+                        {row.operation}
+                      </div>
                     ) : row.status === 'Commit' ? (
-                      <div style={{ color: 'green' }}>{row.operation}</div>
+                      <div style={{ color: 'green', fontWeight: 'bold' }}>
+                        {row.operation}
+                      </div>
+                    ) : row.status === 'Queue' ? (
+                      <div style={{ color: 'goldenrod', fontWeight: 'bold' }}>
+                        {row.status}: {row.operation}({row.table})
+                      </div>
                     ) : (
                       <div>
                         {row.operation}({row.table})
