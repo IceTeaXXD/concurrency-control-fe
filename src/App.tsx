@@ -5,7 +5,7 @@ import { Generate } from './component/Generate'
 export const App = () => (
   <Router>
     <Routes>
-      <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/" element={<Dashboard />} />
       <Route path="/generate" element={<Generate />} />
     </Routes>
   </Router>

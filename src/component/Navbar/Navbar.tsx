@@ -7,7 +7,7 @@ const Navbar = () => {
       <Flex p="5" bg="purple.500" color="white">
         <Spacer />
         <Box>
-          <Link to="/dashboard">
+          <Link to="/">
             <Text fontSize="md" fontWeight="bold">
               Home
             </Text>
