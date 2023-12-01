@@ -2,6 +2,8 @@ import { FormEvent, ChangeEvent, useState, useEffect } from 'react'
 import {
   Stack,
   FormControl,
+  Radio,
+  RadioGroup,
   Input,
   Button,
   useColorModeValue,
@@ -17,9 +19,10 @@ import {
   Tr,
 } from '@chakra-ui/react'
 import { CheckIcon } from '@chakra-ui/icons'
+import Navbar from './Navbar/Navbar'
 import axios from 'axios'
 
-export const Home = () => {
+export const Generate = () => {
   const [sequence, setSequence] = useState('')
   const [result, setResult] = useState('')
   const [state, setState] = useState<'initial' | 'submitting' | 'success'>(
@@ -97,7 +100,7 @@ export const Home = () => {
 
   const dataTable = data ? (
     <Table mt={5}>
-      <Thead fontWeight={'bold'} bg={'blue.500'}>
+      <Thead fontWeight={'bold'} bg={'#1434A4'}>
         {columns.map((column) => (
           <Th
             key={column}
@@ -133,7 +136,7 @@ export const Home = () => {
                         {row.operation}
                       </div>
                     ) : row.status === 'Queue' ? (
-                      <div style={{ color: 'goldenrod', fontWeight: 'bold' }}>
+                      <div style={{ color: '#A0522D', fontWeight: 'bold' }}>
                         {row.status}: {row.operation}({row.table})
                       </div>
                     ) : (
@@ -167,80 +170,120 @@ export const Home = () => {
   ) : null
 
   return (
-    <Flex
-      minH={'100vh'}
-      align={'flex-start'}
-      justify={'center'}
-      bg={useColorModeValue('gray.50', 'gray.800')}
-      pt={10}
-    >
-      <Container
-        maxW={'3xl'}
-        bg={useColorModeValue('white', 'whiteAlpha.100')}
-        boxShadow={'xl'}
-        rounded={'lg'}
-        p={6}
-        overflowX={'auto'}
+    <>
+      <Navbar />
+      <Flex
+        minH={'100vh'}
+        align={'flex-start'}
+        justify={'center'}
+        bg={useColorModeValue('yellow.100', 'yellow.800')}
+        pt={10}
       >
-        <Heading
-          as={'h2'}
-          fontSize={{ base: 'xl', sm: '2xl' }}
-          textAlign={'center'}
-          mb={5}
+        <Container
+          maxW={'3xl'}
+          bg={useColorModeValue('white', 'gray.900')}
+          boxShadow={'xl'}
+          rounded={'lg'}
+          p={6}
+          overflowX={'auto'}
+          mt={10}
+          mb={16}
         >
-          Concurrency Control
-        </Heading>
-        <Stack
-          direction={{ base: 'column', md: 'row' }}
-          as={'form'}
-          spacing={'12px'}
-          onSubmit={(e: FormEvent) => {
-            e.preventDefault()
-            setState('submitting')
-            TwoPhaseLocking()
-          }}
-        >
-          <FormControl w={{ base: '100%', md: '100%' }}>
-            <Input
-              variant={'solid'}
-              borderWidth={1}
-              color={'gray.800'}
-              _placeholder={{
-                color: 'gray.400',
-              }}
-              borderColor={useColorModeValue('gray.300', 'gray.700')}
-              id={'email'}
-              required
-              placeholder={'Input your sequence'}
-              aria-label={'Input your sequence'}
-              value={sequence}
-              disabled={state !== 'initial'}
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setSequence(e.target.value)
-              }
-            />
-          </FormControl>
-          <FormControl w={{ base: '100%', md: '20%' }}>
-            <Button
-              colorScheme={state === 'success' ? 'green' : 'blue'}
-              isLoading={state === 'submitting'}
-              type={state === 'success' ? 'button' : 'submit'}
-              w="100%"
-            >
-              {state === 'success' ? <CheckIcon /> : 'Submit'}
-            </Button>
-          </FormControl>
-        </Stack>
-        <Text
-          mt={2}
-          textAlign={'center'}
-          color={error ? 'red.500' : 'black'}
-          fontWeight={'bold'}
-        >
-          {error ? errorMsg : result ? 'Final Schedule: ' + result : ''}
-        </Text>
-        {dataTable}
-      </Container>
-    </Flex>
+          <Heading
+            as={'h2'}
+            fontSize={{ base: '3xl', sm: '3xl' }}
+            textAlign={'center'}
+            mt={4}
+            mb={10}
+          >
+            Concurrency Control
+          </Heading>
+          <Stack
+            direction={{ base: 'column', md: 'row' }}
+            as={'form'}
+            spacing={'12px'}
+            onSubmit={(e: FormEvent) => {
+              e.preventDefault()
+              setState('submitting')
+              TwoPhaseLocking()
+            }}
+          >
+            <FormControl w={{ base: '100%', md: '100%' }}>
+              <Input
+                variant={'solid'}
+                borderWidth={1}
+                color={'gray.800'}
+                _placeholder={{
+                  color: 'gray.400',
+                }}
+                borderColor={useColorModeValue('gray.300', 'gray.700')}
+                id={'email'}
+                required
+                placeholder={'Input your sequence'}
+                aria-label={'Input your sequence'}
+                value={sequence}
+                disabled={state !== 'initial'}
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                  setSequence(e.target.value)
+                }
+              />
+            </FormControl>
+            <FormControl w={{ base: '100%', md: '20%' }}>
+              <Button
+                colorScheme={state === 'success' ? 'green' : '#191970'}
+                bg={state === 'success' ? '#008000' : '#1434A4'}
+                isLoading={state === 'submitting'}
+                type={state === 'success' ? 'button' : 'submit'}
+                w="100%"
+              >
+                {state === 'success' ? <CheckIcon /> : 'Submit'}
+              </Button>
+            </FormControl>
+          </Stack>
+          <Heading
+            as={'h2'}
+            fontSize={{ base: 'xl', sm: 'xl' }}
+            textAlign={'center'}
+            mt={7}
+            mb={5}
+          >
+            Choose Algorithms:
+          </Heading>
+          <Flex justify="center">
+            <FormControl w={{ base: '100%', md: '27%' }}>
+              <RadioGroup>
+                <Stack direction="row">
+                  <Radio value="option1">2PL</Radio>
+                  <Radio value="option2">OCC</Radio>
+                  <Radio value="option3">MVCC</Radio>
+                </Stack>
+              </RadioGroup>
+            </FormControl>
+          </Flex>
+          <Text
+            mt={2}
+            textAlign={'center'}
+            color={error ? 'red.500' : 'black'}
+            fontWeight={'bold'}
+            bg="white"
+            my={10}
+          >
+            {error ? (
+              errorMsg
+            ) : result ? (
+              <>
+                <span style={{ fontSize: '1.5rem' }}>Final Schedule:</span>
+                <br />
+                <br />
+                {result}
+              </>
+            ) : (
+              ''
+            )}
+          </Text>
+          {dataTable}
+        </Container>
+      </Flex>
+    </>
   )
 }

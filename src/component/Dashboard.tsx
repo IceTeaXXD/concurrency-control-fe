@@ -1,24 +1,25 @@
 import { Button, Heading, Text, Image, Flex, Box } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
-import gembok from '../../img/gembok.png'
+import Navbar from '../component/Navbar/Navbar'
+import gembok from '../img/gembok.png'
 
 export const Dashboard = () => {
   return (
     <>
+      <Navbar />
       <Box
         bgGradient="linear(to-r, red.200, yellow.500)"
-        h="105vh"
+        h="95vh"
         display="flex"
         flexDirection="column"
         justifyContent="center"
         alignItems="left"
         textAlign="left"
         paddingX={24}
-        boxShadow="0px 0px 10px rgba(0, 0, 0, 1)"
       >
         <Flex alignItems="center">
           <Box>
-            <Heading as="h2" size="lg" color="black">
+            <Heading as="h2" size="lg" color="black" mt={-2}>
               Kelompok 2 - K03
             </Heading>
             <Heading as="h1" size="2xl" fontWeight="bold" color="black" mt={5}>
@@ -36,14 +37,14 @@ export const Dashboard = () => {
             <Flex mt={12}>
               <Button
                 as={Link}
-                to="/home"
+                to="/generate"
                 variant="solid"
                 colorScheme="whiteAlpha"
                 color="black"
                 border="2px"
                 mr={8}
               >
-                View Code
+                Generate
               </Button>
               <Button
                 as={Link}
@@ -63,7 +64,7 @@ export const Dashboard = () => {
             width="450px"
             height="450px"
             ml={52}
-            mt={-6}
+            mt={-8}
           />
         </Flex>
       </Box>
