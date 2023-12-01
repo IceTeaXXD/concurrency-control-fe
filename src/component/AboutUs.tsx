@@ -1,5 +1,6 @@
 import { Heading, Text, Flex, Box, Avatar } from '@chakra-ui/react'
 import Navbar from '../component/Navbar/Navbar'
+import copa from '../img/copa.jpg'
 
 export const AboutUs = () => {
   return (
@@ -12,6 +13,17 @@ export const AboutUs = () => {
         px={52}
         bgGradient="linear(to-r, red.200, yellow.500)"
       >
+        <Heading
+          as="h1"
+          size="2xl"
+          fontWeight="bold"
+          color="black"
+          textAlign={'center'}
+          mt={-8}
+          mb={20}
+        >
+          Anggota Kelompok
+        </Heading>
         <Flex direction="row">
           <Avatar
             width={220}
@@ -46,6 +58,7 @@ export const AboutUs = () => {
           <Avatar
             width={220}
             height={220}
+            src={copa}
             position="relative"
             zIndex={2}
             border="20px solid #BBDEFB"

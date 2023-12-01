@@ -1,4 +1,14 @@
-import { Box, Flex, Spacer, ChakraProvider, Text } from '@chakra-ui/react'
+import {
+  Box,
+  Flex,
+  Spacer,
+  ChakraProvider,
+  Text,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+} from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
 
 const Navbar = () => {
@@ -8,17 +18,34 @@ const Navbar = () => {
         <Spacer />
         <Box>
           <Link to="/">
-            <Text fontSize="md" fontWeight="bold">
+            <Text fontSize="md" fontWeight="bold" mr={10}>
               Home
             </Text>
           </Link>
         </Box>
-        <Box mx="8">
+        <Box>
           <Link to="/generate">
-            <Text fontSize="md" fontWeight="bold">
+            <Text fontSize="md" fontWeight="bold" mr={10}>
               Generate
             </Text>
           </Link>
+        </Box>
+        <Box>
+          <Menu>
+            <MenuButton as={Box} cursor="pointer">
+              <Text fontSize="md" fontWeight="bold" mr={10}>
+                Reference
+              </Text>
+            </MenuButton>
+            <MenuList color="purple.500">
+              <MenuItem _hover={{ bg: 'purple.400', color: 'white' }}>
+                <a href="#">Source Code</a>
+              </MenuItem>
+              <MenuItem _hover={{ bg: 'purple.400', color: 'white' }}>
+                <a href="#">Document</a>
+              </MenuItem>
+            </MenuList>
+          </Menu>
         </Box>
         <Box>
           <Link to="/aboutus">
