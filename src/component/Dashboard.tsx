@@ -48,6 +48,7 @@ export const Dashboard = () => {
               </Button>
               <Button
                 as={Link}
+                to="/aboutus"
                 variant="solid"
                 colorScheme="whiteAlpha"
                 color="black"
