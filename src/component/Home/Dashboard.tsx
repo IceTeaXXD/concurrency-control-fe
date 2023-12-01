@@ -1,18 +1,6 @@
-import { FormEvent, ChangeEvent, useState, useEffect } from 'react'
-import {
-  Button,
-  Heading,
-  Text,
-  Container,
-  Image,
-  Flex,
-  Box,
-  SimpleGrid,
-} from '@chakra-ui/react'
-import { CheckIcon } from '@chakra-ui/icons'
+import { Button, Heading, Text, Image, Flex, Box } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
 import gembok from '../../img/gembok.png'
-import axios from 'axios'
 
 export const Dashboard = () => {
   return (
