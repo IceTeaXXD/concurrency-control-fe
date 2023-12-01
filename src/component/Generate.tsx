@@ -32,11 +32,12 @@ export const Generate = () => {
   const [errorMsg, setErrorMsg] = useState('')
   const [data, setData] = useState<TransactionHistory[] | null>(null)
   const [columns, setColumns] = useState<string[]>([])
+  const [selectedAlgorithm, setSelectedAlgorithm] = useState<string>('2pl')
 
   useEffect(() => {
     setData(null)
     setResult('')
-  }, [sequence])
+  }, [sequence, selectedAlgorithm])
 
   interface TransactionHistory {
     transaction: number
@@ -48,10 +49,9 @@ export const Generate = () => {
   async function TwoPhaseLocking() {
     const URL = 'https://api-concurrency-control.vercel.app'
     // const URL = 'http://127.0.0.1:5000/'
-    const response = await axios.post(URL + '/2pl', {
+    const response = await axios.post(URL + '/' + selectedAlgorithm, {
       sequence: sequence,
     })
-
     if (response.data.result) {
       setError(false)
       setData(null)
@@ -251,11 +251,14 @@ export const Generate = () => {
           </Heading>
           <Flex justify="center">
             <FormControl w={{ base: '100%', md: '27%' }}>
-              <RadioGroup>
+              <RadioGroup
+                value={selectedAlgorithm}
+                onChange={setSelectedAlgorithm}
+              >
                 <Stack direction="row">
-                  <Radio value="option1">2PL</Radio>
-                  <Radio value="option2">OCC</Radio>
-                  <Radio value="option3">MVCC</Radio>
+                  <Radio value="2pl">2PL</Radio>
+                  <Radio value="occ">OCC</Radio>
+                  <Radio value="mvcc">MVCC</Radio>
                 </Stack>
               </RadioGroup>
             </FormControl>
