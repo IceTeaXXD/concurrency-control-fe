@@ -47,8 +47,8 @@ export const Generate = () => {
   }
 
   async function TwoPhaseLocking() {
-    const URL = 'https://api-concurrency-control.vercel.app'
-    // const URL = 'http://127.0.0.1:5000/'
+    // const URL = 'https://api-concurrency-control.vercel.app'
+    const URL = 'http://127.0.0.1:5000/'
     const response = await axios.post(URL + '/' + selectedAlgorithm, {
       sequence: sequence,
     })
@@ -123,10 +123,13 @@ export const Generate = () => {
               >
                 {row.transaction.toString() === column ? (
                   <div>
-                    {row.status === 'Success' ? (
+                    {row.status === 'Success' && selectedAlgorithm === '2pl' ? (
                       <div>
                         {row.operation}({row.table})
                       </div>
+                    ) : row.status === 'Success' &&
+                      selectedAlgorithm === 'mvcc' ? (
+                      <div>{row.operation}</div>
                     ) : row.status === 'Abort' ? (
                       <div style={{ color: 'red', fontWeight: 'bold' }}>
                         {row.operation}
