@@ -1,4 +1,11 @@
-import { Button, Heading, Text, Image, Flex, Box } from '@chakra-ui/react'
+import {
+  Button,
+  Heading,
+  Text,
+  Image,
+  Flex,
+  Box,
+} from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
 import Navbar from '../component/Navbar/Navbar'
 import gembok from '../img/gembok.png'
@@ -9,23 +16,32 @@ export const Dashboard = () => {
       <Navbar />
       <Box
         bgGradient="linear(to-r, red.200, yellow.500)"
-        h="95vh"
+        h={{ base: 'auto', md: '95vh' }}
         display="flex"
-        flexDirection="column"
+        flexDirection={{ base: 'column', md: 'row' }}
         justifyContent="center"
         alignItems="left"
         textAlign="left"
-        paddingX={24}
+        paddingX={{ base: 4, md: 24 }}
       >
-        <Flex alignItems="center">
+        <Flex
+          alignItems="center"
+          flexDirection={{ base: 'column', md: 'row' }}
+        >
           <Box>
-            <Heading as="h2" size="lg" color="black" mt={-2}>
+            <Heading as="h2" size="lg" color="black" mt={{ base: 2, md: -2 }}>
               Kelompok 2 - K03
             </Heading>
-            <Heading as="h1" size="2xl" fontWeight="bold" color="black" mt={5}>
+            <Heading
+              as="h1"
+              size="2xl"
+              fontWeight="bold"
+              color="black"
+              mt={{ base: 5, md: 0 }}
+            >
               Concurrency Control Protocol
             </Heading>
-            <Heading as="h3" size="sm" color="black" mt={12}>
+            <Heading as="h3" size="sm" color="black" mt={{ base: 12, md: 12 }}>
               Jenis Concurrency Control Protocol:
               <br />
               1. Two-Phase Locking (2PL)
@@ -34,7 +50,7 @@ export const Dashboard = () => {
               <br />
               3. Multiversion Timestamp Ordering Concurrency Control (MVCC)
             </Heading>
-            <Flex mt={12}>
+            <Flex mt={{ base: 12, md: 12 }}>
               <Button
                 as={Link}
                 to="/generate"
@@ -42,7 +58,7 @@ export const Dashboard = () => {
                 colorScheme="whiteAlpha"
                 color="black"
                 border="2px"
-                mr={8}
+                mr={{ base: 0, md: 8 , sm: 4}}
               >
                 Generate
               </Button>
@@ -53,7 +69,7 @@ export const Dashboard = () => {
                 colorScheme="whiteAlpha"
                 color="black"
                 border="2px"
-                mr={4}
+                mr={{ base: 4, md: 4 }}
               >
                 About Us
               </Button>
@@ -62,21 +78,21 @@ export const Dashboard = () => {
           <Image
             src={gembok}
             alt="gembok"
-            width="450px"
-            height="450px"
-            ml={52}
-            mt={-8}
+            width={{ base: '100%', lg: '450px', md: '0px', sm: '0px' }}
+            height={{ base: 'auto', lg: '450px', md: '0px', sm: '0px' }}
+            ml={{ base: 0, md: 52 }}
+            mt={{ base: 8, md: -8 }}
           />
         </Flex>
-      </Box>
-      <Box
-        background="yellow.100"
-        h="155vh"
-        display="flex"
-        flexDirection="column"
-        paddingX={24}
-        boxShadow="0px 0px 10px rgba(0, 0, 0, 1)"
-      >
+        </Box>  
+        <Box
+          background="yellow.100"
+          h={{ base: 'auto', md: '155vh' }}
+          display="flex"
+          flexDirection="column"
+          paddingX={{ base: 4, md: 24 }}
+          boxShadow="0px 0px 10px rgba(0, 0, 0, 1)"
+        >
         <Heading
           as="h2"
           size="2xl"
@@ -93,7 +109,6 @@ export const Dashboard = () => {
             border={2}
             borderRadius="3xl"
             padding={10}
-            width={1000}
             mt={8}
           >
             <Heading as="h3" size="lg" color="black">
@@ -115,7 +130,6 @@ export const Dashboard = () => {
             border={2}
             borderRadius="3xl"
             padding={10}
-            width={1000}
             mt={12}
             marginLeft={'auto'}
           >
@@ -144,7 +158,6 @@ export const Dashboard = () => {
             border={2}
             borderRadius="3xl"
             padding={10}
-            width={1000}
             mt={12}
           >
             <Heading as="h3" size="lg" color="black">
